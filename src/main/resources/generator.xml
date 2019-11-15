@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!-- 当前电脑的数据库驱动程序jar包的全路径 -->
+    <classPathEntry location="D:\\aDevelopTool\apache-maven-3.5.0-bin\apache-maven-3.5.0\repo\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar"/>
+
+    <!-- 数据库链接 -->
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!-- 不生成注释
+       <commentGenerator>
+         <property name="suppressAllComments" value="true" />
+       </commentGenerator>
+       -->
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="true"/>
+        </plugin>
+
+        <!-- 整合lombok-->
+        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin" >
+            <property name="hasLombok" value="true"/>
+        </plugin>
+
+
+        <!-- <jdbcConnection
+            driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            connectionURL="jdbc:sqlserver://192.168.1.202\S28R2:1433;databaseName=ESSC_branch"
+            userId="sa"
+            password="ESSC~1234">
+        </jdbcConnection> -->
+
+        <jdbcConnection
+                connectionURL="jdbc:mysql://127.0.0.1:3306/person?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"
+                driverClass="com.mysql.cj.jdbc.Driver"
+                password="root"
+                userId="root" />
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 指定javaBean的生成位置 -->
+        <javaModelGenerator
+                targetPackage="com.qz.springboot.entity"
+                targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 指定sql映射文件的生成位置 -->
+        <sqlMapGenerator
+                targetPackage="mapper"
+                targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 指定dao接口生成的位置 mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.qz.springboot.mapper"
+                             targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 表 -->
+        <!--<table tableName="employee" domainObjectName="Employee"></table>-->
+        <table tableName="class" domainObjectName="Classes"></table>
+
+    </context>
+</generatorConfiguration>
