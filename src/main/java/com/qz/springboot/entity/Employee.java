@@ -17,4 +17,5 @@ public class Employee {
 
     @Column(name = "gra_id")
     private Integer graId;
+    //
 }

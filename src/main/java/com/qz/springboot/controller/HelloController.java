@@ -3,6 +3,7 @@ package com.qz.springboot.controller;
 import com.alibaba.fastjson.JSON;
 import com.qz.springboot.entity.Classes;
 import com.qz.springboot.entity.Employee;
+import com.qz.springboot.entity.User;
 import com.qz.springboot.service.ClassService;
 import com.qz.springboot.service.EmployeeService;
 import io.swagger.annotations.Api;
@@ -31,7 +32,7 @@ public class HelloController {
     @ApiOperation(value = "新增一个用户",notes = "新增之后返回对象")
     //@ApiImplicitParam(paramType = "query",name = "employee",value = "用户",required = true)
     @ApiResponse(code = 400,message = "参数没有填好",response = String.class)
-    public String insert(Employee employee){
+    public String insert(Employee employee, User user){
         System.out.println("employee::"+ JSON.toJSONString(employee));
         if(employee != null) {
             employeeService.save(employee);
